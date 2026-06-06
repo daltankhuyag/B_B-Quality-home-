@@ -1,0 +1,12 @@
+{
+  "name": "bb-quality-home",
+  "version": "1.0.0",
+  "description": "B&B Quality Home Improvement website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.14"
+  }
+}

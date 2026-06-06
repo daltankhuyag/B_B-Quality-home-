@@ -365,7 +365,6 @@
 <section class="stats">
   <div class="wrap">
     <div class="stat reveal"><div class="num" data-count="15">0</div><div class="lbl">Years Experience</div></div>
-    <div class="stat reveal"><div class="num" data-count="850" data-suffix="+">0</div><div class="lbl">Projects Completed</div></div>
     <div class="stat reveal"><div class="num" data-count="100" data-suffix="%">0</div><div class="lbl">Licensed &amp; Insured</div></div>
     <div class="stat reveal"><div class="num" data-count="5" data-suffix="★">0</div><div class="lbl">Average Rating</div></div>
   </div>
@@ -953,10 +952,39 @@ const dots=[...dotsWrap.children];
 function go(i){slides[rc].classList.remove('on');dots[rc].classList.remove('on');rc=i;slides[rc].classList.add('on');dots[rc].classList.add('on');}
 setInterval(()=>go((rc+1)%slides.length),5500);
 
-document.getElementById('quoteForm').addEventListener('submit',e=>{
+document.getElementById('quoteForm').addEventListener('submit',async e=>{
   e.preventDefault();
-  const m=document.getElementById('formMsg');m.classList.add('show');e.target.reset();
-  setTimeout(()=>m.classList.remove('show'),6000);
+  const form=e.target;
+  const btn=form.querySelector('button[type="submit"]');
+  const m=document.getElementById('formMsg');
+  const fields=form.querySelectorAll('input,select,textarea');
+  btn.disabled=true;btn.textContent='Sending…';
+  try{
+    const res=await fetch('/send-quote',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        name:form.querySelector('[placeholder="Your name"]').value,
+        phone:form.querySelector('[placeholder="(000) 000-0000"]').value,
+        email:form.querySelector('[type="email"]').value,
+        service:form.querySelector('select').value,
+        details:form.querySelector('textarea').value,
+      }),
+    });
+    const data=await res.json();
+    if(data.ok){
+      m.style.background='';m.textContent='Thank you! We\'ll be in touch within one business day.';
+    }else{
+      m.style.background='#c0392b';m.textContent='Something went wrong — please call us at (703) 887-5069.';
+    }
+    m.classList.add('show');form.reset();
+    setTimeout(()=>m.classList.remove('show'),7000);
+  }catch(_){
+    m.style.background='#c0392b';m.textContent='Could not send — please call us at (703) 887-5069.';
+    m.classList.add('show');setTimeout(()=>m.classList.remove('show'),7000);
+  }finally{
+    btn.disabled=false;btn.textContent='Request Free Quote';
+  }
 });
 </script>
 </body>
