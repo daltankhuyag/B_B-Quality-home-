@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B&amp;B Quality Home Improvement — Virginia &amp; DMV Remodeling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f6f3ee;--cream-2:#ebe6dd;--paper:#ffffff;--ink:#141414;--ink-soft:#4a4a48;
+    --muted:#8d8a84;--sage:#ff7a18;--sage-deep:#ff6a00;--sage-ink:#7a3500;--line:#e3ded4;
+    --serif:'Cormorant Garamond', Georgia, serif;--sans:'Jost', system-ui, sans-serif;
+    --shadow:0 18px 50px -22px rgba(20,20,20,.5);--ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--sans);color:var(--ink);background:var(--paper);font-weight:300;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 32px;}
+  .eyebrow{font-size:10px;letter-spacing:3.5px;color:var(--sage-deep);text-transform:uppercase;font-weight:500;}
+  h2.section-title{font-family:var(--serif);font-weight:500;font-size:clamp(32px,4.4vw,52px);line-height:1.08;letter-spacing:.5px;}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease), transform .9s var(--ease);}
+  .reveal.in{opacity:1;transform:none;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .4s var(--ease), box-shadow .4s var(--ease), padding .4s var(--ease);padding:22px 0;}
+  nav.solid{background:rgba(246,243,238,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);padding:14px 0;}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .logo{display:flex;align-items:center;gap:11px;cursor:pointer;}
+  .logo .letter{font-family:var(--serif);font-size:30px;font-weight:700;line-height:1;}
+  .logo .mark{width:26px;height:26px;}
+  .logo .tag{font-size:8px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-left:14px;padding-left:14px;border-left:1px solid var(--line);}
+  nav:not(.solid) .logo .letter,nav:not(.solid) .logo .tag{color:#fff;}
+  nav:not(.solid) .logo .tag{border-color:rgba(255,255,255,.25);}
+  nav:not(.solid) .logo .mark polygon{fill:#fff;}
+  .nav-links{display:flex;gap:34px;align-items:center;}
+  .nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);position:relative;padding:4px 0;transition:color .3s;}
+  nav:not(.solid) .nav-links a{color:rgba(255,255,255,.85);}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:currentColor;transition:width .35s var(--ease);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{background:var(--sage-deep);color:#fff!important;padding:11px 24px;font-size:10px;letter-spacing:2px;transition:background .3s var(--ease),transform .3s var(--ease);}
+  .nav-cta:hover{background:var(--sage);transform:translateY(-1px);}
+  nav:not(.solid) .nav-cta{background:var(--sage-deep);color:#fff!important;}
+  nav:not(.solid) .nav-cta:hover{background:var(--sage);}
+  .nav-cta::after{display:none!important;}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0;z-index:70;}
+  .burger span{width:24px;height:2px;background:var(--ink);transition:.3s;}
+  nav:not(.solid) .burger span{background:#fff;}
+
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;background:url('/Public/Main%20page%20photo.png') center/cover no-repeat;}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(20,20,18,.72) 0%,rgba(20,20,18,.3) 55%,rgba(20,20,18,.15) 100%);}
+  .hero .wrap{position:relative;z-index:2;}
+  .hero .eyebrow{color:var(--sage);}
+  .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(44px,7vw,92px);line-height:1.02;letter-spacing:.5px;margin:18px 0 22px;max-width:14ch;}
+  .hero p{font-size:16px;max-width:46ch;color:rgba(255,255,255,.85);line-height:1.85;}
+  .hero-actions{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;padding:16px 34px;transition:.3s var(--ease);cursor:pointer;border:0;font-family:var(--sans);}
+  .btn-primary{background:#fff;color:var(--ink);}
+  .btn-primary:hover{background:var(--sage);color:#fff;transform:translateY(-2px);}
+  .btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);}
+  .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff;}
+  .hero-scroll{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.7);display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .hero-scroll .bar{width:1px;height:46px;background:linear-gradient(rgba(255,255,255,.6),transparent);animation:drop 1.8s var(--ease) infinite;}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+
+  .stats{background:var(--cream);}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:54px 32px;}
+  .stat{text-align:center;}
+  .stat .num{font-family:var(--serif);font-size:clamp(38px,4.5vw,58px);font-weight:500;line-height:1;color:var(--ink);}
+  .stat .lbl{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-top:10px;}
+
+  .about{padding:120px 0;}
+  .about .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:70px;align-items:center;}
+  .about-img{position:relative;}
+  .about-img img{width:100%;display:block;box-shadow:var(--shadow);}
+  .about-img .badge{position:absolute;bottom:-26px;left:-26px;background:var(--sage);color:#fff;padding:26px 30px;text-align:center;}
+  .about-img .badge .b-num{font-family:var(--serif);font-size:44px;line-height:1;font-weight:600;}
+  .about-img .badge .b-txt{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;margin-top:6px;}
+  .about h2{margin:14px 0 22px;}
+  .about p{color:var(--ink-soft);font-size:15px;line-height:2;margin-bottom:18px;}
+  .about .sign{font-family:var(--serif);font-size:26px;color:var(--ink);margin-top:8px;}
+
+  .services{background:var(--cream);padding:120px 0;}
+  .serv-head{text-align:center;max-width:620px;margin:0 auto 64px;}
+  .serv-head h2{margin:14px 0;}
+  .serv-head p{color:var(--ink-soft);font-size:15px;}
+  .serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);}
+  .serv-card{background:var(--paper);padding:42px 34px;transition:.4s var(--ease);position:relative;}
+  .serv-card:hover{background:var(--ink);color:#fff;transform:translateY(-4px);z-index:2;box-shadow:var(--shadow);}
+  .serv-card .ico{width:38px;height:38px;margin-bottom:22px;color:var(--sage-deep);transition:color .4s;}
+  .serv-card:hover .ico{color:var(--sage);}
+  .serv-card h3{font-family:var(--serif);font-size:25px;font-weight:500;margin-bottom:10px;}
+  .serv-card p{font-size:13px;color:var(--ink-soft);transition:color .4s;line-height:1.8;}
+  .serv-card:hover p{color:rgba(255,255,255,.8);}
+
+  .gallery{padding:120px 0;}
+  .gl-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;gap:24px;flex-wrap:wrap;}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;}
+  .filter{background:none;border:1px solid var(--line);font-family:var(--sans);font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:9px 20px;cursor:pointer;color:var(--ink-soft);transition:.3s;}
+  .filter:hover{border-color:var(--ink);}
+  .filter.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .sl-outer{position:relative;user-select:none;-webkit-user-select:none;}
+  .sl-viewport{overflow:hidden;}
+  .sl-track{display:flex;gap:16px;will-change:transform;transition:transform .65s var(--ease);cursor:grab;}
+  .sl-track.is-dragging{cursor:grabbing;transition:none;}
+  .sl-slide{flex:0 0 calc((100% - 32px)/3);position:relative;overflow:hidden;cursor:pointer;aspect-ratio:4/3;background:var(--cream-2);}
+  .sl-slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease);}
+  .sl-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,20,18,.65),transparent 55%);opacity:0;transition:opacity .4s;}
+  .sl-slide:hover img{transform:scale(1.07);}
+  .sl-slide:hover::after{opacity:1;}
+  .sl-cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#fff;opacity:0;transform:translateY(8px);transition:.4s var(--ease);}
+  .sl-slide:hover .sl-cap{opacity:1;transform:none;}
+  .sl-cat{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--sage);}
+  .sl-title{font-family:var(--serif);font-size:20px;line-height:1.2;}
+  .sl-hidden{display:none!important;}
+  .sl-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:4;background:rgba(255,255,255,.95);border:0;width:48px;height:48px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(20,20,20,.16);transition:background .3s var(--ease),color .3s var(--ease);}
+  .sl-btn:hover{background:var(--ink);color:#fff;}
+  .sl-btn:disabled{opacity:0;pointer-events:none;}
+  .sl-btn svg{width:16px;height:16px;}
+  .sl-prev{left:14px;}.sl-next{right:14px;}
+  .sl-footer{display:flex;align-items:center;justify-content:space-between;margin-top:26px;}
+  .sl-dots{display:flex;gap:7px;align-items:center;}
+  .sl-dots button{width:8px;height:8px;border-radius:50%;border:0;background:var(--line);cursor:pointer;transition:.3s;padding:0;}
+  .sl-dots button.on{background:var(--ink);width:22px;border-radius:4px;}
+  .sl-count{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
+  .sl-empty{display:none;text-align:center;padding:60px 0;font-size:13px;color:var(--muted);letter-spacing:1px;}
+  .sl-empty.show{display:block;}
+
+  .process{background:var(--ink);color:#fff;padding:120px 0;}
+  .process .serv-head h2{color:#fff;}
+  .process .serv-head .eyebrow{color:var(--sage);}
+  .process .serv-head p{color:rgba(255,255,255,.7);}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;margin-top:24px;}
+  .step .n{font-family:var(--serif);font-size:60px;color:rgba(255,255,255,.14);line-height:1;}
+  .step h3{font-family:var(--serif);font-size:22px;font-weight:500;margin:6px 0 10px;}
+  .step p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.8;}
+
+  .reviews{padding:120px 0;background:var(--cream);}
+  .rev-wrap{max-width:820px;margin:0 auto;text-align:center;position:relative;}
+  .rev-stars{color:var(--sage-deep);font-size:20px;letter-spacing:4px;margin-bottom:24px;}
+  .rev-slide{display:none;}
+  .rev-slide.on{display:block;animation:fade .6s var(--ease);}
+  @keyframes fade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+  .rev-quote{font-family:var(--serif);font-size:clamp(22px,3vw,32px);line-height:1.45;color:var(--ink);font-weight:400;}
+  .rev-name{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:26px;}
+  .rev-dots{display:flex;gap:9px;justify-content:center;margin-top:38px;}
+  .rev-dots button{width:8px;height:8px;border-radius:50%;border:0;background:var(--line);cursor:pointer;transition:.3s;padding:0;}
+  .rev-dots button.on{background:var(--ink);width:24px;border-radius:4px;}
+
+  .contact{padding:120px 0;}
+  .contact .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start;}
+  .contact h2{margin:14px 0 20px;}
+  .contact .lead{color:var(--ink-soft);font-size:15px;margin-bottom:34px;line-height:2;}
+  .info-row{display:flex;align-items:center;gap:16px;padding:18px 0;border-top:1px solid var(--line);text-decoration:none;}
+  .info-row:last-child{border-bottom:1px solid var(--line);}
+  .info-row .ico{width:20px;height:20px;color:var(--sage-deep);flex:none;}
+  .info-row .k{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+  .info-row .v{font-size:15px;color:var(--ink);}
+  .info-row:hover .v{color:var(--sage-ink);}
+  form{background:var(--cream);padding:44px;}
+  .field{margin-bottom:20px;}
+  .field label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+  .field input,.field select,.field textarea{width:100%;background:#fff;border:1px solid var(--line);padding:14px 16px;font-family:var(--sans);font-size:14px;font-weight:300;color:var(--ink);transition:border .3s;outline:none;}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--sage-deep);}
+  .field textarea{resize:vertical;min-height:110px;}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  form .btn{width:100%;justify-content:center;background:var(--ink);color:#fff;margin-top:6px;}
+  form .btn:hover{background:#000;}
+  .form-msg{display:none;background:var(--sage);color:#fff;padding:16px;text-align:center;font-size:13px;letter-spacing:1px;margin-top:16px;}
+  .form-msg.show{display:block;animation:fade .5s var(--ease);}
+
+  footer{background:var(--ink);color:rgba(255,255,255,.7);padding:64px 0 30px;}
+  .foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.12);}
+  .foot-top .logo .letter,.foot-top .logo .tag{color:#fff;}
+  .foot-top .logo .tag{border-color:rgba(255,255,255,.2);}
+  .foot-top .logo .mark polygon{fill:#fff;}
+  .foot-cols{display:flex;gap:60px;flex-wrap:wrap;}
+  .foot-cols h4{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#fff;margin-bottom:16px;}
+  .foot-cols a{display:block;font-size:13px;text-decoration:none;color:rgba(255,255,255,.65);padding:5px 0;transition:.3s;}
+  .foot-cols a:hover{color:var(--sage);}
+  .foot-bottom{padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.5);}
+
+  .lb{position:fixed;inset:0;background:rgba(15,15,13,.92);z-index:100;display:none;align-items:center;justify-content:center;padding:40px;}
+  .lb.open{display:flex;animation:fade .3s;}
+  .lb img{max-width:90vw;max-height:85vh;box-shadow:var(--shadow);transition:opacity .3s var(--ease),transform .3s var(--ease);}
+  .lb.is-switching #lbImg{opacity:.2;transform:scale(.985);}
+  .lb .close{position:absolute;top:26px;right:32px;background:none;border:0;color:#fff;font-size:34px;cursor:pointer;line-height:1;}
+  .lb .nav-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:0;color:#fff;font-size:24px;width:54px;height:54px;cursor:pointer;transition:.3s;}
+  .lb .nav-btn:hover{background:rgba(255,255,255,.25);}
+  .lb .prev{left:24px;}.lb .next{right:24px;}
+  .lb-meta{position:absolute;left:40px;right:40px;bottom:34px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;pointer-events:none;}
+  .lb-copy{max-width:min(60ch,55vw);color:#fff;pointer-events:auto;}
+  .lb-copy .k,.lb-copy .t,.lb-copy .d,.lb-count{transition:opacity .24s var(--ease),transform .24s var(--ease);}
+  .lb.is-switching .lb-copy .k,.lb.is-switching .lb-copy .t,.lb.is-switching .lb-copy .d,.lb.is-switching .lb-count{opacity:0;transform:translateY(10px);}
+  .lb-copy .k{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--sage);}
+  .lb-copy .t{font-family:var(--serif);font-size:clamp(24px,3vw,34px);line-height:1.1;margin-top:8px;}
+  .lb-copy .d{font-size:13px;color:rgba(255,255,255,.72);margin-top:6px;}
+  .lb-tools{display:flex;align-items:center;gap:12px;pointer-events:auto;}
+  .lb-count{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.75);}
+  .lb-toggle{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);color:#fff;font-family:var(--sans);font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:12px 16px;cursor:pointer;transition:.3s;}
+  .lb-toggle:hover{background:rgba(255,255,255,.22);}
+  .lb-thumbs{position:absolute;left:40px;right:40px;top:34px;display:flex;gap:10px;overflow:auto;padding-right:120px;scrollbar-width:none;}
+  .lb-thumbs::-webkit-scrollbar{display:none;}
+  .lb-thumb{width:72px;height:56px;flex:none;border:1px solid rgba(255,255,255,.18);background:none;padding:0;cursor:pointer;opacity:.55;transition:.3s;overflow:hidden;}
+  .lb-thumb img{width:100%;height:100%;object-fit:cover;max-width:none;max-height:none;box-shadow:none;}
+  .lb-thumb:hover,.lb-thumb.active{opacity:1;border-color:var(--sage);transform:translateY(-2px);}
+
+  @media(max-width:900px){
+    .about .wrap,.contact .wrap{grid-template-columns:1fr;gap:48px;}
+    .about-img .badge{left:0;}
+    .serv-grid{grid-template-columns:1fr 1fr;}
+    .steps{grid-template-columns:1fr 1fr;gap:30px;}
+    .stats .wrap{grid-template-columns:1fr 1fr;gap:30px;}
+    .sl-slide{flex:0 0 calc((100% - 16px)/2);}
+  }
+  @media(max-width:600px){
+    .wrap{padding:0 22px;}
+    .nav-links{position:fixed;inset:0 0 0 auto;width:74%;max-width:320px;background:var(--cream);flex-direction:column;justify-content:center;gap:26px;transform:translateX(100%);transition:transform .4s var(--ease);box-shadow:var(--shadow);}
+    .nav-links.show{transform:none;}
+    nav:not(.solid) .nav-links a{color:var(--ink-soft);}
+    .burger{display:flex;}
+    .logo .tag{display:none;}
+    .serv-grid,.steps,.two{grid-template-columns:1fr;}
+    .gl-head{flex-direction:column;align-items:flex-start;}
+    .sl-slide{flex:0 0 100%;}
+    .about-img .badge{padding:18px 22px;}
+    form{padding:30px 24px;}
+    .about,.services,.gallery,.process,.reviews,.contact{padding:80px 0;}
+    .lb{padding:90px 18px 26px;align-items:center;}
+    .lb img{max-width:100%;max-height:52vh;}
+    .lb .close{top:18px;right:22px;}
+    .lb .nav-btn{top:auto;bottom:150px;width:48px;height:48px;}
+    .lb .prev{left:18px;}
+    .lb .next{right:18px;}
+    .lb-thumbs{left:18px;right:18px;top:18px;padding-right:72px;}
+    .lb-meta{left:18px;right:18px;bottom:18px;flex-direction:column;align-items:flex-start;}
+    .lb-copy{max-width:none;}
+    .lb-tools{width:100%;justify-content:space-between;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <div class="logo" onclick="scrollTo({top:0,behavior:'smooth'})">
+      <span class="letter">B</span>
+      <svg class="mark" viewBox="0 0 27 27" aria-hidden="true">
+        <polygon points="13.5,3 15,4.5 13.5,6 12,4.5" fill="#141414"/>
+        <polygon points="9,7.5 10.5,9 9,10.5 7.5,9" fill="#141414"/>
+        <polygon points="13.5,7.5 15,9 13.5,10.5 12,9" fill="#141414"/>
+        <polygon points="18,7.5 19.5,9 18,10.5 16.5,9" fill="#141414"/>
+        <polygon points="4.5,12 6,13.5 4.5,15 3,13.5" fill="#141414"/>
+        <polygon points="9,12 10.5,13.5 9,15 7.5,13.5" fill="#141414"/>
+        <polygon points="13.5,12 15,13.5 13.5,15 12,13.5" fill="#141414"/>
+        <polygon points="18,12 19.5,13.5 18,15 16.5,13.5" fill="#141414"/>
+        <polygon points="22.5,12 24,13.5 22.5,15 21,13.5" fill="#141414"/>
+        <polygon points="9,16.5 10.5,18 9,19.5 7.5,18" fill="#141414"/>
+        <polygon points="13.5,16.5 15,18 13.5,19.5 12,18" fill="#141414"/>
+        <polygon points="18,16.5 19.5,18 18,19.5 16.5,18" fill="#141414"/>
+        <polygon points="13.5,21 15,22.5 13.5,24 12,22.5" fill="#141414"/>
+      </svg>
+      <span class="letter">B</span>
+      <span class="tag">Quality Home Improvement</span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#about" onclick="closeMenu()">About</a>
+      <a href="#services" onclick="closeMenu()">Services</a>
+      <a href="#gallery" onclick="closeMenu()">Projects</a>
+      <a href="#process" onclick="closeMenu()">Process</a>
+      <a href="#reviews" onclick="closeMenu()">Reviews</a>
+      <a href="#contact" class="btn nav-cta" onclick="closeMenu()">Get a Quote</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div class="eyebrow reveal">Est. 2007 · Virginia &amp; DMV Area</div>
+    <h1 class="reveal">Remodeling that brings your vision to life.</h1>
+    <p class="reveal">A locally-owned, licensed &amp; insured class A contracting company delivering the highest quality remodeling, electrical and plumbing work for over 15 years.</p>
+    <div class="hero-actions reveal">
+      <a href="#contact" class="btn btn-primary">Request a Free Quote</a>
+      <a href="#gallery" class="btn btn-ghost">View Our Work</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><span class="bar"></span></div>
+</header>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stat reveal"><div class="num" data-count="15">0</div><div class="lbl">Years Experience</div></div>
+    <div class="stat reveal"><div class="num" data-count="850" data-suffix="+">0</div><div class="lbl">Projects Completed</div></div>
+    <div class="stat reveal"><div class="num" data-count="100" data-suffix="%">0</div><div class="lbl">Licensed &amp; Insured</div></div>
+    <div class="stat reveal"><div class="num" data-count="5" data-suffix="★">0</div><div class="lbl">Average Rating</div></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-img reveal">
+      <img src="/Public/Main%20page%20photo.png" alt="Beautifully remodeled kitchen">
+      <div class="badge"><div class="b-num">15+</div><div class="b-txt">Years of<br>Craftsmanship</div></div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow">Who We Are</div>
+      <h2 class="section-title">Quality Home<br>Improvement</h2>
+      <p>We are a locally-owned and operated, class A contracting company providing Virginia &amp; DMV area homeowners with the highest quality remodeling services since 2007. Licensed and insured, we are certified to perform home improvements, electrical and plumbing work.</p>
+      <p>With 15 years of experience, we specialize in helping you get the most appeal out of your home — making sure your vision is brought to life. Our expert contractors guide every project to completion with satisfaction and minimal disruption.</p>
+      <div class="sign">— The B&B Quality Home Improvement Team</div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="serv-head reveal">
+      <div class="eyebrow">What We Do</div>
+      <h2 class="section-title">Full-service remodeling, done right.</h2>
+      <p>From a single room to a whole-home transformation, our team handles every trade under one roof.</p>
+    </div>
+    <div class="serv-grid">
+      <div class="serv-card reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>
+        <h3>Kitchen Remodel</h3><p>Custom cabinetry, countertops, islands and lighting that make the heart of your home shine.</p>
+      </div>
+      <div class="serv-card reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M6 12V6a2 2 0 0 1 4 0M4 12v4a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4v-4"/></svg>
+        <h3>Bathroom Remodel</h3><p>Spa-like retreats with modern vanities, tilework, walk-in showers and fixtures.</p>
+      </div>
+      <div class="serv-card reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 21V8l9-5 9 5v13M3 21h18M9 21v-6h6v6"/></svg>
+        <h3>Basement &amp; Additions</h3><p>Finished basements and home additions that add space, value and comfort.</p>
+      </div>
+      <div class="serv-card reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 3h18v18H3zM3 9h18M9 9v12M15 9v12"/></svg>
+        <h3>Flooring &amp; Tile</h3><p>Hardwood, LVP, tile and more — installed flawlessly for a lasting finish.</p>
+      </div>
+      <div class="serv-card reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
+        <h3>Electrical &amp; Plumbing</h3><p>Certified electrical and plumbing work, from rewiring to full re-pipes.</p>
+      </div>
+      <div class="serv-card reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 4l6 6M3 21l3-1 11-11-2-2L4 18zM18 8l3-3-3-3-3 3"/></svg>
+        <h3>Painting &amp; Carpentry</h3><p>Interior &amp; exterior painting, framing, trim, doors, windows and custom carpentry.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="gl-head reveal">
+      <div>
+        <div class="eyebrow">Our Work</div>
+        <h2 class="section-title">Recent projects.</h2>
+      </div>
+      <div class="filters">
+        <button class="filter active" data-f="all">All</button>
+        <button class="filter" data-f="kitchen">Kitchens</button>
+        <button class="filter" data-f="bath">Bathrooms</button>
+        <button class="filter" data-f="living">Living Spaces</button>
+      </div>
+    </div>
+    <div class="sl-outer reveal">
+      <div class="sl-viewport" id="slViewport">
+        <div class="sl-track" id="slTrack">
+          <div class="sl-slide" data-cat="kitchen" data-category="Kitchen" data-title="Marble Island Kitchen">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=900&q=80" alt="Marble Island Kitchen" loading="lazy">
+            <div class="sl-cap"><div class="sl-cat">Kitchen</div><div class="sl-title">Marble Island Kitchen</div></div>
+          </div>
+          <div class="sl-slide" data-cat="bath" data-category="Bathroom" data-title="Double Vanity Suite">
+            <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=900&q=80" alt="Double Vanity Suite" loading="lazy">
+            <div class="sl-cap"><div class="sl-cat">Bathroom</div><div class="sl-title">Double Vanity Suite</div></div>
+          </div>
+          <div class="sl-slide" data-cat="living" data-category="Living Space" data-title="Open Concept Living">
+            <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=900&q=80" alt="Open Concept Living" loading="lazy">
+            <div class="sl-cap"><div class="sl-cat">Living Space</div><div class="sl-title">Open Concept Living</div></div>
+          </div>
+          <div class="sl-slide" data-cat="kitchen" data-category="Kitchen" data-title="Modern Two-Tone Kitchen">
+            <img src="https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?auto=format&fit=crop&w=900&q=80" alt="Modern Two-Tone Kitchen" loading="lazy">
+            <div class="sl-cap"><div class="sl-cat">Kitchen</div><div class="sl-title">Modern Two-Tone Kitchen</div></div>
+          </div>
+          <div class="sl-slide" data-cat="bath" data-category="Bathroom" data-title="Walk-in Shower">
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80" alt="Walk-in Shower" loading="lazy">
+            <div class="sl-cap"><div class="sl-cat">Bathroom</div><div class="sl-title">Walk-in Shower</div></div>
+          </div>
+          <div class="sl-slide" data-cat="living" data-category="Living Space" data-title="Finished Basement">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=80" alt="Finished Basement" loading="lazy">
+            <div class="sl-cap"><div class="sl-cat">Living Space</div><div class="sl-title">Finished Basement</div></div>
+          </div>
+          <div class="sl-slide" data-cat="kitchen" data-category="Kitchen" data-title="Bright White Kitchen">
+            <img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&w=900&q=80" alt="Bright White Kitchen" loading="lazy">
+            <div class="sl-cap"><div class="sl-cat">Kitchen</div><div class="sl-title">Bright White Kitchen</div></div>
+          </div>
+          <div class="sl-slide" data-cat="bath" data-category="Bathroom" data-title="Freestanding Tub Bath">
+            <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=900&q=80" alt="Freestanding Tub Bath" loading="lazy">
+            <div class="sl-cap"><div class="sl-cat">Bathroom</div><div class="sl-title">Freestanding Tub Bath</div></div>
+          </div>
+          <div class="sl-slide" data-cat="living" data-category="Living Space" data-title="Modern Living Room">
+            <img src="https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?auto=format&fit=crop&w=900&q=80" alt="Modern Living Room" loading="lazy">
+            <div class="sl-cap"><div class="sl-cat">Living Space</div><div class="sl-title">Modern Living Room</div></div>
+          </div>
+        </div>
+      </div>
+      <button class="sl-btn sl-prev" id="slPrev" aria-label="Previous slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="sl-btn sl-next" id="slNext" aria-label="Next slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="sl-footer">
+      <div class="sl-dots" id="slDots"></div>
+      <span class="sl-count" id="slCount">01 / 03</span>
+    </div>
+    <div class="sl-empty" id="slEmpty">No projects in this category yet.</div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="serv-head reveal">
+      <div class="eyebrow">How It Works</div>
+      <h2 class="section-title">A simple, transparent process.</h2>
+      <p>We keep you informed and your home livable from first call to final walkthrough.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">01</div><h3>Consultation</h3><p>We visit your home, listen to your goals and assess the space at no cost.</p></div>
+      <div class="step reveal"><div class="n">02</div><h3>Design &amp; Quote</h3><p>You receive a clear, detailed estimate and timeline with no surprises.</p></div>
+      <div class="step reveal"><div class="n">03</div><h3>Build</h3><p>Our certified team executes the work cleanly with minimal disruption.</p></div>
+      <div class="step reveal"><div class="n">04</div><h3>Walkthrough</h3><p>We finish with a final inspection together to ensure your full satisfaction.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap rev-wrap reveal">
+    <div class="eyebrow">Testimonials</div>
+    <div class="rev-stars">★★★★★</div>
+    <div id="revSlides">
+      <div class="rev-slide on"><p class="rev-quote">"B&amp;B remodeled our entire kitchen and the result exceeded every expectation. Professional, on time, and spotless. We couldn't be happier."</p><div class="rev-name">Maria T. — Arlington, VA</div></div>
+      <div class="rev-slide"><p class="rev-quote">"From the first consultation to the final walkthrough, the team was honest, skilled and respectful of our home. Highly recommend."</p><div class="rev-name">James R. — Fairfax, VA</div></div>
+      <div class="rev-slide"><p class="rev-quote">"They finished our basement beautifully and stayed right on budget. Real craftsmen who take pride in their work."</p><div class="rev-name">Priya S. — Washington, DC</div></div>
+    </div>
+    <div class="rev-dots" id="revDots"></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Get In Touch</div>
+      <h2 class="section-title">Let's build something great.</h2>
+      <p class="lead">Tell us about your project and we'll get back to you within one business day with a free, no-obligation quote.</p>
+      <a class="info-row" href="tel:+17038875069">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+        <div><div class="k">Call Us</div><div class="v">(703) 887-5069</div></div>
+      </a>
+      <a class="info-row" href="mailto:info@bbqualityhome.com">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <div><div class="k">Email Us</div><div class="v">info@bbqualityhome.com</div></div>
+      </a>
+      <div class="info-row">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><div class="k">Service Area</div><div class="v">Virginia &amp; DMV Region</div></div>
+      </div>
+    </div>
+
+    <form class="reveal" id="quoteForm">
+      <div class="two">
+        <div class="field"><label>Name</label><input type="text" required placeholder="Your name"></div>
+        <div class="field"><label>Phone</label><input type="tel" required placeholder="(000) 000-0000"></div>
+      </div>
+      <div class="field"><label>Email</label><input type="email" required placeholder="you@email.com"></div>
+      <div class="field"><label>Project Type</label>
+        <select required>
+          <option value="">Select a service…</option>
+          <option>Kitchen Remodel</option>
+          <option>Bathroom Remodel</option>
+          <option>Basement / Addition</option>
+          <option>Flooring &amp; Tile</option>
+          <option>Electrical / Plumbing</option>
+          <option>Painting / Carpentry</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field"><label>Project Details</label><textarea placeholder="Tell us a little about what you have in mind…"></textarea></div>
+      <button type="submit" class="btn">Request Free Quote</button>
+      <div class="form-msg" id="formMsg">Thank you! We'll be in touch within one business day.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="logo">
+          <span class="letter">B</span>
+          <svg class="mark" viewBox="0 0 27 27">
+            <polygon points="13.5,3 15,4.5 13.5,6 12,4.5"/>
+            <polygon points="9,7.5 10.5,9 9,10.5 7.5,9"/>
+            <polygon points="13.5,7.5 15,9 13.5,10.5 12,9"/>
+            <polygon points="18,7.5 19.5,9 18,10.5 16.5,9"/>
+            <polygon points="4.5,12 6,13.5 4.5,15 3,13.5"/>
+            <polygon points="9,12 10.5,13.5 9,15 7.5,13.5"/>
+            <polygon points="13.5,12 15,13.5 13.5,15 12,13.5"/>
+            <polygon points="18,12 19.5,13.5 18,15 16.5,13.5"/>
+            <polygon points="22.5,12 24,13.5 22.5,15 21,13.5"/>
+            <polygon points="9,16.5 10.5,18 9,19.5 7.5,18"/>
+            <polygon points="13.5,16.5 15,18 13.5,19.5 12,18"/>
+            <polygon points="18,16.5 19.5,18 18,19.5 16.5,18"/>
+            <polygon points="13.5,21 15,22.5 13.5,24 12,22.5"/>
+          </svg>
+          <span class="letter">B</span>
+        </div>
+        <p style="font-size:13px;max-width:30ch;margin-top:16px;color:rgba(255,255,255,.6);">Locally-owned, licensed &amp; insured remodeling for the Virginia &amp; DMV area since 2007.</p>
+      </div>
+      <div class="foot-cols">
+        <div>
+          <h4>Services</h4>
+          <a href="#services">Kitchen Remodel</a>
+          <a href="#services">Bathroom Remodel</a>
+          <a href="#services">Basement &amp; Additions</a>
+          <a href="#services">Electrical &amp; Plumbing</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="#about">About Us</a>
+          <a href="#gallery">Projects</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="tel:+17038875069">(703) 887-5069</a>
+          <a href="mailto:info@bbqualityhome.com">info@bbqualityhome.com</a>
+          <a href="#">Virginia &amp; DMV Area</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2007–2026 B&amp;B Quality Home Improvement. All rights reserved.</span>
+      <span>Class A Contractor · Licensed &amp; Insured</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lb" id="lb">
+  <button class="close" id="lbClose" aria-label="Close">&times;</button>
+  <div class="lb-thumbs" id="lbThumbs"></div>
+  <button class="nav-btn prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <img id="lbImg" src="" alt="Project">
+  <button class="nav-btn next" id="lbNext" aria-label="Next">&#8250;</button>
+  <div class="lb-meta">
+    <div class="lb-copy">
+      <div class="k" id="lbCategory">Project</div>
+      <div class="t" id="lbTitle">Project</div>
+      <div class="d" id="lbDescription">Explore recent remodeling work from B&amp;B Quality Home Improvement.</div>
+    </div>
+    <div class="lb-tools">
+      <div class="lb-count" id="lbCount">1 / 1</div>
+      <button class="lb-toggle" id="lbAutoplay" type="button" aria-pressed="false">Auto Play</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40));
+
+const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',()=>navLinks.classList.toggle('show'));
+function closeMenu(){navLinks.classList.remove('show');}
+
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*60)+'ms';io.observe(el);});
+
+const counted=new Set();
+const statIO=new IntersectionObserver((es)=>es.forEach(e=>{
+  if(e.isIntersecting&&!counted.has(e.target)){counted.add(e.target);
+    const el=e.target,target=+el.dataset.count,suf=el.dataset.suffix||'';let n=0;const step=target/45;
+    const t=setInterval(()=>{n+=step;if(n>=target){n=target;clearInterval(t);}el.textContent=Math.round(n)+suf;},22);
+  }
+}),{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>statIO.observe(el));
+
+const tiles=[...document.querySelectorAll('.sl-slide')];
+
+const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbThumbs=document.getElementById('lbThumbs'),lbCategory=document.getElementById('lbCategory'),lbTitle=document.getElementById('lbTitle'),lbDescription=document.getElementById('lbDescription'),lbCount=document.getElementById('lbCount'),lbAutoplay=document.getElementById('lbAutoplay');let visible=[],cur=0,autoTimer=null,touchStartX=0,transitionTimer=null;
+
+function syncVisible(){
+  visible=tiles.filter(x=>!x.classList.contains('sl-hidden'));
+  if(!visible.length){closeLB();return;}
+  cur=Math.min(cur,visible.length-1);
+  renderThumbs();
+  show();
+}
+
+function renderThumbs(){
+  lbThumbs.innerHTML='';
+  visible.forEach((tile,index)=>{
+    const img=tile.querySelector('img');
+    const thumb=document.createElement('button');
+    thumb.className='lb-thumb'+(index===cur?' active':'');
+    thumb.type='button';
+    thumb.setAttribute('aria-label',`Open slide ${index+1}`);
+    thumb.innerHTML=`<img src="${img.src}" alt="${img.alt}">`;
+    thumb.addEventListener('click',()=>goTo(index));
+    lbThumbs.appendChild(thumb);
+  });
+}
+
+function updateAutoplayUi(){
+  const isPlaying=!!autoTimer;
+  lbAutoplay.textContent=isPlaying?'Pause':'Auto Play';
+  lbAutoplay.setAttribute('aria-pressed',String(isPlaying));
+}
+
+function stopAutoplay(){
+  clearInterval(autoTimer);
+  autoTimer=null;
+  updateAutoplayUi();
+}
+
+function startAutoplay(){
+  stopAutoplay();
+  autoTimer=setInterval(()=>goTo(cur+1,false),3200);
+  updateAutoplayUi();
+}
+
+function toggleAutoplay(){
+  if(autoTimer) stopAutoplay();
+  else startAutoplay();
+}
+
+function getTileData(tile){
+  const category=tile.dataset.category||tile.querySelector('.sl-cat')?.textContent||'Project';
+  const title=tile.dataset.title||tile.querySelector('.sl-title')?.textContent||tile.querySelector('img')?.alt||'Project';
+  return {
+    src:tile.querySelector('img').src,
+    alt:tile.querySelector('img').alt,
+    category,
+    title,
+    description:`${category} project from the B&B Quality Home Improvement portfolio.`
+  };
+}
+
+function applySlideContent(item){
+  lbImg.src=item.src;
+  lbImg.alt=item.alt;
+  lbCategory.textContent=item.category;
+  lbTitle.textContent=item.title;
+  lbDescription.textContent=item.description;
+  lbCount.textContent=`${cur+1} / ${visible.length}`;
+}
+
+function show(animate=lb.classList.contains('open')){
+  const item=getTileData(visible[cur]);
+  clearTimeout(transitionTimer);
+  if(!animate){
+    lb.classList.remove('is-switching');
+    applySlideContent(item);
+  } else {
+    lb.classList.add('is-switching');
+    transitionTimer=setTimeout(()=>{
+      applySlideContent(item);
+      lb.classList.remove('is-switching');
+    },170);
+  }
+  [...lbThumbs.children].forEach((thumb,index)=>thumb.classList.toggle('active',index===cur));
+  lbThumbs.children[cur]?.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+}
+
+function goTo(index,resetAutoplay=true){
+  if(!visible.length) return;
+  cur=(index+visible.length)%visible.length;
+  show();
+  if(resetAutoplay&&autoTimer) startAutoplay();
+}
+
+function openLB(t){
+  syncVisible();
+  cur=visible.indexOf(t);
+  show(false);
+  lb.classList.add('open');
+}
+
+function closeLB(){
+  clearTimeout(transitionTimer);
+  lb.classList.remove('is-switching');
+  lb.classList.remove('open');
+  stopAutoplay();
+}
+
+document.getElementById('lbClose').onclick=closeLB;
+document.getElementById('lbNext').onclick=()=>goTo(cur+1);
+document.getElementById('lbPrev').onclick=()=>goTo(cur-1);
+lbAutoplay.onclick=toggleAutoplay;
+lb.addEventListener('click',e=>{if(e.target===lb)closeLB();});
+lb.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].clientX;},{passive:true});
+lb.addEventListener('touchend',e=>{
+  const delta=e.changedTouches[0].clientX-touchStartX;
+  if(Math.abs(delta)<40) return;
+  goTo(delta<0?cur+1:cur-1);
+},{passive:true});
+addEventListener('keydown',e=>{
+  if(!lb.classList.contains('open')) return;
+  if(e.key==='Escape') closeLB();
+  if(e.key==='ArrowRight') goTo(cur+1);
+  if(e.key==='ArrowLeft') goTo(cur-1);
+  if(e.key===' ') {
+    e.preventDefault();
+    toggleAutoplay();
+  }
+});
+
+// ——— Gallery Slider ———
+(function(){
+  var viewport=document.getElementById('slViewport');
+  var track=document.getElementById('slTrack');
+  var dotsEl=document.getElementById('slDots');
+  var countEl=document.getElementById('slCount');
+  var emptyEl=document.getElementById('slEmpty');
+  var prevBtn=document.getElementById('slPrev');
+  var nextBtn=document.getElementById('slNext');
+  var GAP=16;
+  var idx=0;
+  var slAutoTimer=null;
+  var dragStart=0,isDragging=false,dragMoved=false;
+
+  function getVis(){return tiles.filter(function(s){return !s.classList.contains('sl-hidden');});}
+  function getPV(){return window.innerWidth<600?1:window.innerWidth<900?2:3;}
+
+  function render(animate){
+    if(animate===undefined)animate=true;
+    var vis=getVis();
+    var pv=getPV();
+    var vpW=viewport.offsetWidth;
+    var sw=Math.floor((vpW-GAP*(pv-1))/pv);
+    var step=sw+GAP;
+    var max=Math.max(0,vis.length-pv);
+    idx=Math.min(Math.max(0,idx),max);
+
+    // show/hide + size
+    tiles.forEach(function(s){
+      if(s.classList.contains('sl-hidden')){s.style.display='none';return;}
+      s.style.display='';
+      s.style.flex='0 0 '+sw+'px';
+    });
+
+    // translate
+    track.style.transition=animate?'transform .65s cubic-bezier(.22,.61,.36,1)':'none';
+    track.style.transform='translateX(-'+(idx*step)+'px)';
+
+    // empty state
+    emptyEl.classList.toggle('show',vis.length===0);
+    viewport.style.display=vis.length===0?'none':'';
+
+    // dots
+    dotsEl.innerHTML='';
+    for(var i=0;i<=max;i++){
+      (function(i){
+        var d=document.createElement('button');
+        if(i===idx)d.classList.add('on');
+        d.setAttribute('aria-label','Slide '+(i+1));
+        d.onclick=function(){idx=i;render();resetAuto();};
+        dotsEl.appendChild(d);
+      })(i);
+    }
+
+    // count
+    function pad(n){return String(n).padStart(2,'0');}
+    countEl.textContent=vis.length?pad(idx+1)+' / '+pad(max+1):'';
+
+    // arrows
+    prevBtn.disabled=idx===0;
+    nextBtn.disabled=idx>=max;
+  }
+
+  function resetAuto(){
+    clearInterval(slAutoTimer);
+    slAutoTimer=setInterval(function(){
+      var max=Math.max(0,getVis().length-getPV());
+      idx=idx>=max?0:idx+1;
+      render();
+    },4200);
+  }
+
+  // filter handling (updates slider + lightbox)
+  document.querySelectorAll('.filter').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelector('.filter.active').classList.remove('active');
+      btn.classList.add('active');
+      var f=btn.dataset.f;
+      tiles.forEach(function(s){s.classList.toggle('sl-hidden',f!=='all'&&s.dataset.cat!==f);});
+      idx=0;
+      render();
+      resetAuto();
+      if(lb.classList.contains('open'))syncVisible();
+    });
+  });
+
+  prevBtn.onclick=function(){if(idx>0){idx--;render();resetAuto();}};
+  nextBtn.onclick=function(){var max=Math.max(0,getVis().length-getPV());if(idx<max){idx++;render();resetAuto();}};
+
+  // hover pause
+  viewport.addEventListener('mouseenter',function(){clearInterval(slAutoTimer);});
+  viewport.addEventListener('mouseleave',resetAuto);
+
+  // touch swipe
+  track.addEventListener('touchstart',function(e){dragStart=e.touches[0].clientX;dragMoved=false;},{passive:true});
+  track.addEventListener('touchmove',function(){dragMoved=true;},{passive:true});
+  track.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-dragStart;
+    if(Math.abs(dx)<40)return;
+    var max=Math.max(0,getVis().length-getPV());
+    if(dx<0&&idx<max)idx++;
+    else if(dx>0&&idx>0)idx--;
+    render();resetAuto();
+  },{passive:true});
+
+  // mouse drag
+  track.addEventListener('mousedown',function(e){
+    dragStart=e.clientX;isDragging=true;dragMoved=false;
+    track.classList.add('is-dragging');e.preventDefault();
+  });
+  document.addEventListener('mousemove',function(e){
+    if(isDragging&&Math.abs(e.clientX-dragStart)>5)dragMoved=true;
+  });
+  document.addEventListener('mouseup',function(e){
+    if(!isDragging)return;
+    var dx=e.clientX-dragStart;
+    var max=Math.max(0,getVis().length-getPV());
+    if(Math.abs(dx)>40){if(dx<0&&idx<max)idx++;else if(dx>0&&idx>0)idx--;}
+    isDragging=false;track.classList.remove('is-dragging');
+    render();resetAuto();
+  });
+
+  // keyboard (only when lightbox closed)
+  addEventListener('keydown',function(e){
+    if(lb.classList.contains('open'))return;
+    var max=Math.max(0,getVis().length-getPV());
+    if(e.key==='ArrowLeft'&&idx>0){idx--;render();resetAuto();}
+    if(e.key==='ArrowRight'&&idx<max){idx++;render();resetAuto();}
+  });
+
+  // click → lightbox (gated by drag)
+  tiles.forEach(function(s){
+    s.addEventListener('click',function(){if(!dragMoved)openLB(s);});
+  });
+
+  // resize
+  var rt;
+  window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){render(false);},120);});
+
+  render();
+  resetAuto();
+})();
+
+const slides=[...document.querySelectorAll('.rev-slide')],dotsWrap=document.getElementById('revDots');let rc=0;
+slides.forEach((_,i)=>{const d=document.createElement('button');if(i===0)d.classList.add('on');d.onclick=()=>go(i);dotsWrap.appendChild(d);});
+const dots=[...dotsWrap.children];
+function go(i){slides[rc].classList.remove('on');dots[rc].classList.remove('on');rc=i;slides[rc].classList.add('on');dots[rc].classList.add('on');}
+setInterval(()=>go((rc+1)%slides.length),5500);
+
+document.getElementById('quoteForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const m=document.getElementById('formMsg');m.classList.add('show');e.target.reset();
+  setTimeout(()=>m.classList.remove('show'),6000);
+});
+</script>
+</body>
+</html>
